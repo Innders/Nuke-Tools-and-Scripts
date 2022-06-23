@@ -11,6 +11,8 @@ addUserKnob {41 add_track l "add track" T axisTracker.add_track}
 addUserKnob {41 del_tracks l "delete tracks" -STARTLINE T axisTracker.del_tracks}
 addUserKnob {26 "" l <b>Export</b>}
 addUserKnob {22 trackerExport l "Export Tracker" T "group = nuke.thisNode()\ngroup.begin()\nnuke.toNode('axisTracker')\['selected'].setValue(True)\nnuke.nodeCopy(\"%clipboard%\")\ngroup.end()\ntrackerCopy = nuke.nodePaste(\"%clipboard%\")" +STARTLINE}
+addUserKnob {26 "" +STARTLINE}
+addUserKnob {26 ideas l "" +STARTLINE T "Found a bug or have an idea? Go to Info tab!"}
 addUserKnob {20 transform l Transform}
 addUserKnob {41 reference_frame l "reference frame" T axisTracker.reference_frame}
 addUserKnob {41 translate T axisTracker.translate}
@@ -18,39 +20,41 @@ addUserKnob {41 rotate T axisTracker.rotate}
 addUserKnob {41 scale T axisTracker.scale}
 addUserKnob {41 center T axisTracker.center}
 addUserKnob {20 tips l Tips}
-addUserKnob {26 tipsText l "" +STARTLINE T "<html>\n<style>\nli \{\n    margin-top: 10px;\n\}\ndiv \{\n    color: grey;\n\}\n</style>\n<h2>Setup Method 1 (auto)</h2>\n<ul>\n    <li>Select a vertex point in the 3D viewer and click 'Create Axis From Selection'.</li>\n    <li>Select another one to add more, you can just keep adding them</li>\n    <li>Select multiple ones all at once to create them all in one go</li>\n    <li>Everything should have automatically linked up, with the positions on the axis already added</li>\n    <li>Go to the tracking step if everything is working!</li>\n</ul>\n\n\n<h2>Setup Method 2 (manual)</h2>\n<ul>\n<li>Connect all your axis points (that have the correct 3D position) to one mergeGeo node.</li>\n<li>Connect \"points\" input to the mergeGeo node.</li>\n<li>For one axis point you can connect it directly to the \"points\" input.</li>\n<li>Trackers will be created in the order of how the mergeGeo axis nodes are connected: <br/>1 will be the first tract etc. </li>\n</ul>\n\n\n<h2>Tracking</h2>\n\n\n<ul>\n<li>Once everything is connected click \"Track Axis Points!\" and the tracks will be calculated.</li>\n<li>To update or redo the tracks it's best to delete any current tracks<br/>and click \"Track Axis Points!\" again.</li>\n</ul>\n\n\n<div>\nCredits<br/>\nLuke Inderwick 2021\n</div>\n</html>"}
+addUserKnob {26 tipsText l "" +STARTLINE T "<html>\n<style>\nli \{\n    margin-top: 10px;\n\}\ndiv \{\n    color: grey;\n\}\n</style>\n<h2>Setup Method 1 (auto)</h2>\n<ul>\n    <li>Select a vertex point in the 3D viewer and click 'Create Axis From Selection'.</li>\n    <li>Select another one to add more, you can just keep adding them</li>\n    <li>Select multiple ones all at once to create them all in one go</li>\n    <li>Everything should have automatically linked up, with the positions on the axis already added</li>\n    <li>Go to the tracking step if everything is working!</li>\n</ul>\n\n\n<h2>Setup Method 2 (manual)</h2>\n<ul>\n<li>Connect all your axis points (that have the correct 3D position) to one mergeGeo node.</li>\n<li>Connect \"points\" input to the mergeGeo node.</li>\n<li>For one axis point you can connect it directly to the \"points\" input.</li>\n<li>Trackers will be created in the order of how the mergeGeo axis nodes are connected: <br/>1 will be the first tract etc. </li>\n</ul>\n\n\n<h2>Tracking</h2>\n\n\n<ul>\n<li>Once everything is connected click \"Track Axis Points!\" and the tracks will be calculated.</li>\n<li>To update or redo the tracks it's best to delete any current tracks<br/>and click \"Track Axis Points!\" again.</li>\n</ul>\n</html>"}
+addUserKnob {20 info l Info}
+addUserKnob {26 info_text l "" +STARTLINE T "<html>\n  <p>By Luke Inderwick 2022</p>\n  <p>Version 1.01</p>\n  <p>If you find any bugs or add any features please make a pull request or comment on Github!</p>\n  <p>\n    Github:\n    <a href=\"https://github.com/Innders/Nuke-Tools-and-Scripts\"\n      >https://github.com/Innders/Nuke-Tools-and-Scripts</a\n    >\n  </p>\n  <p>\n    Nukepedia:\n    <a href=\"http://www.nukepedia.com/gizmos/3d/reconcile3dpro\"\n      >http://www.nukepedia.com/gizmos/3d/reconcile3dpro</a\n    >\n  </p>\n</html>"}
 }
 Input {
- inputs 0
- name points
- xpos 510
- ypos 182
- number 1
+inputs 0
+name points
+xpos 510
+ypos 182
+number 1
 }
 Input {
- inputs 0
- name footage
- xpos 290
- ypos 374
- number 2
+inputs 0
+name footage
+xpos 290
+ypos 374
+number 2
 }
 Output {
- name Output1
- xpos 290
- ypos 470
+name Output1
+xpos 290
+ypos 470
 }
 Input {
- inputs 0
- name camera
- xpos 290
- ypos 182
+inputs 0
+name camera
+xpos 290
+ypos 182
 }
 Tracker4 {
- cornerPinOptions "CornerPin2D (use transform ref frame, baked)"
- center {320 240}
- name axisTracker
- selected true
- xpos 70
- ypos -362
+cornerPinOptions "CornerPin2D (use transform ref frame, baked)"
+center {320 240}
+name axisTracker
+selected true
+xpos 70
+ypos -362
 }
 end_group
